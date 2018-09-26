@@ -5,9 +5,10 @@ eureka:
     secure-port-enabled: true
     statusPageUrl: https://${DOMAIN_NAME}/info
     healthCheckUrl: https://${DOMAIN_NAME}/health
+    secure-health-check-url: https://${DOMAIN_NAME}/health
     homePageUrl: https://${DOMAIN_NAME}/
     instance-id: ${spring.application.name}
-    
+
   client:
     serviceUrl:
       defaultZone: https://eureka-kpociot.herokuapp.com/eureka/
