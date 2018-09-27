@@ -3,18 +3,18 @@ eureka:
     hostname: ${DOMAIN_NAME}
     non-secure-port-enabled: false
     secure-port-enabled: true
-    statusPageUrl: https://${DOMAIN_NAME}/info
-    healthCheckUrl: https://${DOMAIN_NAME}/health
-    secure-health-check-url: https://${DOMAIN_NAME}/health
+    statusPageUrl: https://${DOMAIN_NAME}/actuator/info
+    healthCheckUrl: https://${DOMAIN_NAME}/actuator/health
+    secure-health-check-url: https://${DOMAIN_NAME}/actuator/health
     homePageUrl: https://${DOMAIN_NAME}/
     instance-id: ${DOMAIN_NAME}
-
   client:
     serviceUrl:
       defaultZone: https://eureka-kpociot.herokuapp.com/eureka/
 
 logging:
   level:
+    org.springframework.cloud.netflix: DEBUG
     org.springframework.cloud.gateway: DEBUG
     org.springframework.http.server.reactive: DEBUG
     org.springframework.web.reactive: DEBUG
@@ -35,6 +35,12 @@ spring:
         - Path=/accounts/**
         filters:
         - RewritePath=/accounts/(?<path>), /$\{path}
+      - id: actuator
+        uri: https://${DOMAIN_NAME}/actuator/
+        predicates:
+        - Path=/actuator/**
+        filters:
+        - RewritePath=/(?<path>), /$\{path}
       - id: frontend
         uri: https://accounting-kpociot.herokuapp.com
         predicates:
