@@ -30,7 +30,7 @@ spring:
           enabled: true
       routes:
       - id: hcb-accounts
-        uri: lb://hcb-accounts
+        uri: https://hcb-accounts
         predicates:
         - Path=/accounts/**
         filters:
@@ -44,6 +44,6 @@ spring:
       - id: frontend
         uri: https://accounting-kpociot.herokuapp.com
         predicates:
-        - Path=/**
+        - Path=/frontend/**
         filters:
         - RewritePath=/(?<path>), /$\{path}
