@@ -45,6 +45,6 @@ spring:
       - id: frontend
         uri: https://accounting-kpociot.herokuapp.com
         predicates:
-        - Path=/frontend/**
+        - Path=/**
         filters:
-        - RewritePath=/frontend/(?<path>), /$\{path}
+        - RewritePath=/(?<path>), /$\{path}
