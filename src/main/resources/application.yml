@@ -44,7 +44,7 @@ spring:
         filters:
         - RewritePath=/(?<path>), /$\{path}
       - id: frontend
-        uri: https://accounting-kpociot.herokuapp.com
+        uri: https://hcb-frontend-kpociot.herokuapp.com
         predicates:
         - Path=/**
         filters:
