@@ -8,6 +8,7 @@ eureka:
     secure-health-check-url: https://${DOMAIN_NAME}/actuator/health
     homePageUrl: https://${DOMAIN_NAME}/
     instance-id: ${DOMAIN_NAME}
+    secure-port: 443
   client:
     serviceUrl:
       defaultZone: https://eureka-kpociot.herokuapp.com/eureka/
