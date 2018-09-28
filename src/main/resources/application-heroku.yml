@@ -43,12 +43,6 @@ spring:
         - Path=/actuator/**
         filters:
         - RewritePath=/(?<path>), /$\{path}
-      - id: seucre-redirect
-        uri: https://${DOMAIN_NAME}/
-        predicates:
-        - Header=Upgrade-Insecure-Requests, 1
-        filters:
-        - RewritePath=/(?<path>), /$\{path}
       - id: frontend
         uri: https://hcb-frontend-kpociot.herokuapp.com
         predicates:
