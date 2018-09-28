@@ -9,11 +9,13 @@ server:
   port: 8282
 
 spring:
+  application:
+    name: hcb-gateway
   cloud:
     gateway:
       routes:
       - id: hcb-accounts
-        uri: lb://hcb-accounts
+        uri: lb://hcb-account-service
         predicates:
         - Path=/accounts/**
         filters:
