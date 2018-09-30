@@ -5,6 +5,14 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
 
+logging:
+  level:
+    org.springframework.cloud.netflix: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+
 server:
   port: 8282
 
@@ -20,6 +28,12 @@ spring:
         - Path=/accounts/**
         filters:
         - RewritePath=/accounts/(?<path>), /$\{path}
+      - id: hcb-auth
+        uri: lb://hcb-auth-service
+        predicates:
+        - Path=/auth/**
+        filters:
+        - StripPrefix=1
       - id: frontend
         uri: http://localhost:3000
         predicates:
