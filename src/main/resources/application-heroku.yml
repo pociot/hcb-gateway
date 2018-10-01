@@ -36,7 +36,13 @@ spring:
         predicates:
         - Path=/accounts/**
         filters:
-        - RewritePath=/accounts/(?<path>), /$\{path}
+        - StripPrefix=1
+      - id: hcb-auth
+        uri: lb://hcb-auth-service
+        predicates:
+        - Path=/auth/**
+        filters:
+        - StripPrefix=1
       - id: actuator
         uri: https://${DOMAIN_NAME}/actuator/
         predicates:
